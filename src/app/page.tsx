@@ -143,6 +143,13 @@ const HomePage: React.FC = () => {
     setCheckboxStates(prev => ({ ...prev, [field]: checked }));
   };
 
+  const handleDiscoverSolutionsClick = () => {
+    const bestServiceElement = document.querySelector('#best-service');
+    if (bestServiceElement) {
+      bestServiceElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="w-full bg-white flex flex-col items-center">
       <Header />
@@ -214,6 +221,7 @@ const HomePage: React.FC = () => {
                   </div>
                   <Button
                     variant="gradient"
+                    onClick={handleDiscoverSolutionsClick}
                     className="w-auto px-[14px] sm:px-[16px] lg:px-[18px] py-[14px] sm:py-[16px] lg:py-[18px] text-[14px] sm:text-[16px] lg:text-[18px] font-lato font-bold leading-[17px] sm:leading-[19px] lg:leading-[22px] rounded-[24px]"
                   >
                     Discover Solutions
@@ -373,7 +381,7 @@ const HomePage: React.FC = () => {
         </section>
 
         {/* Best Service Section */}
-        <section className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0">
+        <section id="best-service" className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-0">
           <div className="flex flex-col lg:flex-row gap-[20px] sm:gap-[30px] lg:gap-[40px] justify-center items-center">
             <div className="w-full lg:w-[40%] flex flex-col gap-[65px] sm:gap-[97px] lg:gap-[130px] justify-start items-center">
               <div className="flex flex-col gap-[12px] sm:gap-[18px] lg:gap-[24px] justify-start items-start w-full">
