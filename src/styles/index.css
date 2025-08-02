@@ -1,0 +1,150 @@
+@import './tailwind.css';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,700&display=swap');
+
+body {
+  font-family: 'Lato', 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+/* Infinite Moving Cards Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+@keyframes scroll-reverse {
+  0% {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll {
+  animation: scroll var(--animation-duration, 80s) linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll-reverse var(--animation-duration, 80s) linear infinite;
+}
+
+.scroller {
+  --animation-duration: 80s;
+}/* High
+-Quality Image Rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: optimize-contrast;
+  -ms-interpolation-mode: bicubic;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Retina/High-DPI Display Optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+  }
+}
+
+/* Smooth image loading */
+img[data-loaded="false"] {
+  filter: blur(5px);
+  transition: filter 0.3s;
+}
+
+img[data-loaded="true"] {
+  filter: blur(0px);
+}
+
+/* Enhanced image container */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
+  pointer-events: none;
+  z-index: 1;
+}/
+* Enhanced Typography and Font Rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Improved text rendering for better quality */
+body, h1, h2, h3, h4, h5, h6, p, span, div {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced readability for small text */
+.text-enhanced {
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
+  text-shadow: 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* Better contrast for card text */
+.card-text {
+  color: #2d3748;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+/* High-quality heading rendering */
+.heading-enhanced {
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Responsive font scaling with better readability */
+@media (max-width: 640px) {
+  .responsive-text {
+    font-size: clamp(12px, 2.5vw, 16px);
+    line-height: 1.5;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .responsive-text {
+    font-size: clamp(14px, 2vw, 18px);
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-text {
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.7;
+  }
+}
