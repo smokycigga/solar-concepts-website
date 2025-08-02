@@ -40,8 +40,9 @@ body {
 
 .scroller {
   --animation-duration: 80s;
-}/* High
--Quality Image Rendering */
+}
+
+/* High-Quality Image Rendering */
 img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: -moz-crisp-edges;
@@ -87,8 +88,9 @@ img[data-loaded="true"] {
   background: linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
   pointer-events: none;
   z-index: 1;
-}/
-* Enhanced Typography and Font Rendering */
+}
+
+/* Enhanced Typography and Font Rendering */
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
