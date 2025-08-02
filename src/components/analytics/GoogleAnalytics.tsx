@@ -23,12 +23,43 @@ export const GoogleAnalytics: React.FC<GoogleAnalyticsProps> = ({ measurementId 
       window.dataLayer.push(arguments);
     };
     
-    // Configure Google Analytics
+    // Configure Google Analytics with enhanced settings
     window.gtag('js', new Date());
     window.gtag('config', measurementId, {
       page_title: document.title,
       page_location: window.location.href,
+      send_page_view: true,
+      // Enhanced ecommerce and conversion tracking
+      allow_google_signals: true,
+      allow_ad_personalization_signals: true,
+      // Privacy settings
+      anonymize_ip: true,
+      // Performance settings
+      transport_type: 'beacon',
+      // Custom dimensions for business insights
+      custom_map: {
+        'dimension1': 'user_type',
+        'dimension2': 'service_interest',
+        'dimension3': 'lead_source'
+      }
     });
+
+    // Track scroll depth for engagement
+    let scrollDepth = 0;
+    const trackScrollDepth = () => {
+      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      if (scrollPercent > scrollDepth && scrollPercent % 25 === 0) {
+        scrollDepth = scrollPercent;
+        window.gtag('event', 'scroll_depth', {
+          event_category: 'engagement',
+          event_label: `${scrollPercent}%`,
+          value: scrollPercent
+        });
+      }
+    };
+
+    window.addEventListener('scroll', trackScrollDepth);
+    return () => window.removeEventListener('scroll', trackScrollDepth);
   }, [measurementId]);
 
   return (
@@ -113,5 +144,60 @@ export const trackPhoneClick = () => {
     event_category: 'contact',
     event_label: 'phone_number',
     value: 1
+  });
+};
+
+// Advanced business tracking
+export const trackQuoteRequest = (serviceType: string, estimatedValue?: number) => {
+  trackEvent('quote_request', {
+    event_category: 'lead_generation',
+    event_label: serviceType,
+    value: estimatedValue || 1,
+    currency: 'USD'
+  });
+};
+
+export const trackServicePageView = (serviceName: string) => {
+  trackEvent('service_page_view', {
+    event_category: 'engagement',
+    event_label: serviceName,
+    custom_map: {
+      'dimension2': serviceName
+    }
+  });
+};
+
+export const trackButtonClick = (buttonName: string, location: string) => {
+  trackEvent('button_click', {
+    event_category: 'engagement',
+    event_label: `${buttonName}_${location}`,
+    value: 1
+  });
+};
+
+export const trackFormStart = (formName: string) => {
+  trackEvent('form_start', {
+    event_category: 'engagement',
+    event_label: formName,
+    value: 1
+  });
+};
+
+export const trackFormComplete = (formName: string, leadValue?: number) => {
+  trackEvent('form_complete', {
+    event_category: 'conversion',
+    event_label: formName,
+    value: leadValue || 100,
+    currency: 'USD'
+  });
+};
+
+// Enhanced conversion tracking for solar business
+export const trackConsultationRequest = (serviceType: string) => {
+  trackEvent('consultation_request', {
+    event_category: 'high_intent_lead',
+    event_label: serviceType,
+    value: 500, // Estimated lead value
+    currency: 'USD'
   });
 };

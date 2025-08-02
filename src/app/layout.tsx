@@ -1,69 +1,22 @@
 import React from 'react';
 import '../styles/index.css';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { PerformanceMonitoring } from '@/components/analytics/PerformanceMonitoring';
+import { generateAdvancedMetadata, generateLocalBusinessSchema, generateWebsiteSchema } from '@/components/seo/AdvancedSEO';
 
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#ff8400',
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ff8400' },
+    { media: '(prefers-color-scheme: dark)', color: '#ff8400' },
+  ],
+  colorScheme: 'light',
 };
 
-export const metadata = {
-  title: 'Solar Concepts - Arizona Premier Solar Tube & Skylight Installation',
-  description: 'Solar Concepts is Arizona\'s premier dealer for solar tubes, skylights, attic fans, and roofing solutions. 40 years of master craftsmanship and certified installation expertise.',
-  keywords: 'solar tubes Arizona, skylights installation, attic fans, roofing services, natural lighting, solar concepts, Arizona premier dealer, master carpenter, master roofer, certified installer',
-  authors: [{ name: 'Solar Concepts' }],
-  creator: 'Solar Concepts',
-  publisher: 'Solar Concepts',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://solarconceptsaz.com',
-    siteName: 'Solar Concepts AZ',
-    title: 'Solar Concepts AZ - Arizona Premier Solar Tube & Skylight Installation',
-    description: 'Arizona\'s premier dealer for solar tubes, skylights, attic fans, and roofing solutions. 40 years of master craftsmanship.',
-    images: [
-      {
-        url: '/images/solar-concepts-og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Solar Concepts AZ - Arizona Premier Solar Dealer',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Solar Concepts - Arizona Premier Solar Tube & Skylight Installation',
-    description: 'Arizona\'s premier dealer for solar tubes, skylights, attic fans, and roofing solutions. 40 years of master craftsmanship.',
-    images: ['/images/solar-concepts-og-image.jpg'],
-    creator: '@SolarConcepts',
-  },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-  },
-  manifest: '/site.webmanifest',
-  alternates: {
-    canonical: 'https://solarconceptsaz.com',
-  },
-};
+export const metadata = generateAdvancedMetadata();
 
 export default function RootLayout({
   children,
@@ -151,6 +104,7 @@ export default function RootLayout({
       </head>
       <body>
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'} />
+        <PerformanceMonitoring />
         {children}
       </body>
     </html>
