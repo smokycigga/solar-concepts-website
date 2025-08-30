@@ -88,11 +88,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out the [Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## 🙏 Acknowledgments
-
-- Built with Next.js 14 and React 18
-- Styled with Tailwind CSS
-- Powered by TypeScript
-- Optimized for SEO and Analytics
-
-Built with ❤️ for Solar Concepts
